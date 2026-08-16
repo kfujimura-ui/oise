@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OISE | Online International Student Exchange</title>
+<link rel="icon" type="image/svg+xml" href="Images/oise-favicon.svg">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+:root {
+  --ink: #172235;
+  --muted: #5d6c7d;
+  --line: #dce5ee;
+  --paper: #fbf8f2;
+  --cream: #fffdf8;
+  --sea: #0f8f8c;
+  --sea-dark: #086b6a;
+  --coral: #d85f45;
+  --gold: #d7a441;
+  --blue: #315b8c;
+  --white: #ffffff;
+  --shadow: 0 22px 60px rgba(23, 34, 53, .12);
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--cream);
+  font-family: var(--font);
+  line-height: 1.6;
+}
+a { color: inherit; text-decoration: none; }
+.page {
+  overflow: hidden;
+}
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 94px;
+  padding: 0 5vw;
+  background: rgba(255, 253, 248, .92);
+  border-bottom: 1px solid rgba(220, 229, 238, .82);
+  backdrop-filter: blur(14px);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.brand-text {
+  display: grid;
+  gap: 6px;
+}
+.brand-name {
+  color: var(--ink);
+  font-size: 40px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  line-height: .95;
+}
+.brand-expansion {
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  line-height: 1.1;
+}
+.brand-mark {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  display: block;
+  border: 1px solid rgba(8, 107, 106, .16);
+  box-shadow: 0 8px 18px rgba(23, 34, 53, .1);
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  color: var(--muted);
+  font-size: 17px;
+  font-weight: 800;
+}
+.nav-links a:hover { color: var(--sea-dark); }
+.nav-cta {
+  color: var(--white);
+  background: var(--ink);
+  border-radius: 7px;
+  padding: 11px 16px;
+}
+.nav-links .nav-cta:hover { color: var(--white); background: var(--sea-dark); }
+.nav-membership {
+  color: var(--sea-dark);
+}
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.03fr) minmax(320px, .97fr);
+  gap: 52px;
+  align-items: center;
+  max-width: 1180px;
+  min-height: calc(100vh - 66px);
+  margin: 0 auto;
+  padding: 72px 5vw 58px;
+}
+.kicker,
+.section-kicker {
+  color: var(--sea-dark);
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+h1, h2, h3, p { margin-top: 0; }
+h1 {
+  max-width: 680px;
+  margin-bottom: 22px;
+  font-size: clamp(48px, 7vw, 86px);
+  line-height: .98;
+  letter-spacing: 0;
+}
+.hero-lede {
+  max-width: 640px;
+  color: #334155;
+  font-size: clamp(18px, 2vw, 23px);
+  line-height: 1.55;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+  margin: 34px 0 30px;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  border-radius: 7px;
+  padding: 12px 18px;
+  border: 1px solid var(--ink);
+  font-weight: 800;
+  font-size: 15px;
+  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+}
+.button:hover { transform: translateY(-1px); }
+.button.primary {
+  color: var(--white);
+  background: var(--sea-dark);
+  border-color: var(--sea-dark);
+}
+.button.primary:hover { background: var(--ink); border-color: var(--ink); }
+.button.secondary {
+  color: var(--ink);
+  background: transparent;
+}
+.button.secondary:hover { background: var(--white); border-color: var(--sea-dark); }
+.route-note {
+  max-width: 560px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.visual {
+  position: relative;
+  min-height: 560px;
+  border: 1px solid rgba(23, 34, 53, .1);
+  border-radius: 8px;
+  background: #e8eef2;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.hero-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 560px;
+  object-fit: cover;
+  object-position: center center;
+}
+.section {
+  padding: 84px 5vw;
+}
+.inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.section-head {
+  display: grid;
+  grid-template-columns: minmax(240px, .65fr) minmax(260px, .35fr);
+  gap: 34px;
+  align-items: end;
+  margin-bottom: 38px;
+}
+h2 {
+  margin-bottom: 0;
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.06;
+  letter-spacing: 0;
+}
+.section-head p,
+.text-block p,
+.journey-card p,
+.example p,
+.final-panel p {
+  color: var(--muted);
+}
+.text-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 44px;
+  align-items: start;
+}
+.text-block p {
+  font-size: 17px;
+  line-height: 1.78;
+}
+.section-head.oise-intro {
+  display: block;
+  max-width: 780px;
+  margin-bottom: 0;
+}
+.oise-intro-row {
+  display: grid;
+  grid-template-columns: minmax(300px, .48fr) minmax(320px, .52fr);
+  gap: 40px;
+  align-items: center;
+}
+.oise-intro-photo {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 14px 36px rgba(23, 34, 53, .1);
+}
+.section-head.oise-intro h2 {
+  margin-bottom: 18px;
+}
+.oise-intro .about-attribution {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 15px;
+}
+.contrast {
+  background: #edf7f4;
+  border-block: 1px solid rgba(8, 107, 106, .12);
+}
+.examples {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.example {
+  position: relative;
+  min-height: 285px;
+  padding: 24px;
+  border-radius: 8px;
+  background: var(--white);
+  border: 1px solid rgba(23, 34, 53, .1);
+  overflow: hidden;
+}
+.example::before {
+  content: "";
+  display: block;
+  width: 58px;
+  height: 7px;
+  margin-bottom: 24px;
+  border-radius: 99px;
+  background: var(--coral);
+}
+.example:nth-child(2)::before { background: var(--sea); }
+.example:nth-child(3)::before { background: var(--gold); }
+.example h3 {
+  font-size: 22px;
+  line-height: 1.18;
+  margin-bottom: 12px;
+}
+.example .tag {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  color: rgba(23, 34, 53, .32);
+  font-size: 42px;
+  font-weight: 900;
+}
+.open-note {
+  max-width: 780px;
+  padding: 30px 32px;
+  border-radius: 8px;
+  background: var(--white);
+  border: 1px solid rgba(23, 34, 53, .1);
+  box-shadow: 0 14px 36px rgba(23, 34, 53, .08);
+}
+.open-note p {
+  margin: 0;
+  color: #405161;
+  font-size: 19px;
+  line-height: 1.78;
+}
+.exchange-shape {
+  display: grid;
+  grid-template-columns: minmax(280px, .62fr) minmax(220px, .38fr);
+  gap: 28px;
+  align-items: center;
+}
+.support-illustration {
+  display: block;
+  width: 100%;
+  max-width: 390px;
+  justify-self: center;
+  border-radius: 8px;
+}
+.membership-callout {
+  display: grid;
+  grid-template-columns: minmax(260px, .72fr) minmax(220px, .28fr);
+  gap: 28px;
+  align-items: center;
+  padding: 30px 32px;
+  border-radius: 8px;
+  background: var(--white);
+  border: 1px solid rgba(23, 34, 53, .1);
+  box-shadow: 0 14px 36px rgba(23, 34, 53, .08);
+}
+.membership-callout h3 {
+  margin-bottom: 9px;
+  font-size: 25px;
+  line-height: 1.2;
+}
+.membership-callout p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+.membership-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-end;
+}
+.journey {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.journey-card {
+  padding: 27px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+.step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 22px;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--ink);
+  font-weight: 900;
+}
+.journey-card:nth-child(2) .step { background: var(--sea-dark); }
+.journey-card:nth-child(3) .step { background: var(--coral); }
+.journey-card h3 {
+  font-size: 21px;
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+.finder-note {
+  margin-top: 28px;
+  padding: 20px 22px;
+  border-left: 5px solid var(--sea);
+  background: rgba(15, 143, 140, .08);
+  color: #31515c;
+}
+.final {
+  padding: 88px 5vw 96px;
+  background: var(--ink);
+  color: var(--white);
+}
+.final-panel {
+  display: grid;
+  grid-template-columns: minmax(260px, .68fr) minmax(260px, .32fr);
+  gap: 34px;
+  align-items: center;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.final h2 { color: var(--white); }
+.final-panel p { color: rgba(255,255,255,.72); font-size: 18px; }
+.final .button.secondary {
+  color: var(--white);
+  border-color: rgba(255,255,255,.45);
+}
+.final .button.secondary:hover {
+  background: rgba(255,255,255,.08);
+  border-color: var(--white);
+}
+.footer {
+  padding: 28px 5vw;
+  color: rgba(255,255,255,.56);
+  background: #111b2b;
+  font-size: 13px;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.inline-link {
+  color: var(--sea-dark);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.footer a {
+  color: rgba(255,255,255,.82);
+  font-weight: 800;
+}
+.footer a:hover { color: var(--white); }
+@media (max-width: 880px) {
+  .nav {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+    padding-top: 16px;
+    padding-bottom: 14px;
+  }
+  .brand-mark {
+    width: 50px;
+    height: 50px;
+  }
+  .brand-name { font-size: 34px; }
+  .brand-expansion { font-size: 14px; }
+  .nav-links {
+    width: 100%;
+    gap: 18px;
+    overflow-x: auto;
+    padding-bottom: 3px;
+    font-size: 16px;
+  }
+  .nav-links a { white-space: nowrap; }
+  .hero,
+  .section-head,
+  .text-block,
+  .examples,
+  .journey,
+  .membership-callout,
+  .oise-intro-row,
+  .exchange-shape,
+  .final-panel {
+    grid-template-columns: 1fr;
+  }
+  .hero {
+    min-height: auto;
+    padding-top: 58px;
+  }
+  .visual,
+  .hero-photo { min-height: 500px; }
+}
+@media (max-width: 560px) {
+  .hero,
+  .section,
+  .final { padding-left: 22px; padding-right: 22px; }
+  .nav { padding-left: 22px; padding-right: 22px; }
+  .brand { gap: 12px; }
+  .brand-mark {
+    width: 46px;
+    height: 46px;
+  }
+  .brand-name { font-size: 31px; }
+  .brand-expansion {
+    max-width: 248px;
+    font-size: 13px;
+  }
+  .nav-links {
+    gap: 15px;
+    font-size: 15px;
+  }
+  .nav-cta {
+    padding: 10px 14px;
+  }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .button { width: 100%; }
+  .membership-actions { justify-content: stretch; }
+  .support-illustration { max-width: 310px; }
+  .visual,
+  .hero-photo { min-height: 380px; }
+  h1 { font-size: clamp(42px, 14vw, 58px); }
+  .footer-inner { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="brand" href="#top" aria-label="OISE home">
+      <img class="brand-mark" src="Images/oise-favicon.svg" alt="" aria-hidden="true">
+      <span class="brand-text">
+        <span class="brand-name">OISE</span>
+        <span class="brand-expansion">Online International Student Exchange</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="#what">What is OISE?</a>
+      <a class="nav-membership" href="#membership">Membership</a>
+      <a class="nav-cta" href="#signin">Sign in</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="top">
+      <div>
+        <h1>Connect two classes for small-group international exchange.</h1>
+        <p class="hero-lede">
+          OISE helps educators shape practical, ongoing exchanges between university classes, where students meet in pairs or small groups and build real communication over time.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#what">Explore OISE</a>
+          <a class="button secondary" href="#membership">Membership</a>
+          <a class="button secondary" href="#signin">Sign in</a>
+        </div>
+        <p class="route-note">
+          Public draft route: /oise_landing_draft.html. Proposed durable route after review: /oise/.
+        </p>
+      </div>
+      <div class="visual">
+        <img class="hero-photo" src="Images/oise-virtual-exchange-connected-classrooms.png" alt="Connected university classrooms in a virtual exchange">
+      </div>
+    </section>
+
+    <section class="section" id="what">
+      <div class="inner">
+        <div class="oise-intro-row">
+          <img class="oise-intro-photo" src="Images/oise-small-group-exchange.png" alt="Students joining a small-group virtual exchange">
+          <div class="section-head oise-intro">
+            <div>
+              <p class="section-kicker">What is OISE?</p>
+              <h2>A classroom-to-classroom exchange, designed at human scale.</h2>
+            </div>
+            <p>
+              OISE helps two university classes build flexible, small-group international exchange through conversation and shared activities.
+            </p>
+            <p class="about-attribution">
+              OISE is operated by the <a class="inline-link" href="https://gcli.site/" target="_blank" rel="noopener">Global Collaborative Learning Initiative (GCLI)</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contrast" id="examples">
+      <div class="inner">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Ways an exchange can take shape</p>
+            <h2>As simple or as developed as the two classes need.</h2>
+          </div>
+          <p>
+            OISE is not a prescribed activity format. It is a way for two educators to connect their classes and agree on an exchange that fits.
+          </p>
+        </div>
+        <div class="exchange-shape">
+          <div class="open-note">
+            <p>
+              An OISE exchange can be as simple as students meeting online for guided conversation, or it can grow into shared activities, reflections, presentations, or collaborative work. The two educators decide together what is realistic for their course goals, enrollment, time zones, and students.
+            </p>
+          </div>
+          <img class="support-illustration" src="Images/oise-peer-exchange-illustration.png" alt="Students connecting online across countries">
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="journey">
+      <div class="inner">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Educator journey</p>
+            <h2>From course idea to exchange plan.</h2>
+          </div>
+          <p>
+            Start with your course context, then connect with another educator who wants to build a practical exchange.
+          </p>
+        </div>
+        <div class="journey">
+          <article class="journey-card">
+            <span class="step">1</span>
+            <h3>Shape your class</h3>
+            <p>Clarify your calendar, course level, class size, language goals, preferred tools, and how much synchronous time your students can manage.</p>
+          </article>
+          <article class="journey-card">
+            <span class="step">2</span>
+            <h3>Find a compatible partner</h3>
+            <p>Use the shared GCLI sign-in when you are ready to look for another educator and begin a conversation about fit.</p>
+          </article>
+          <article class="journey-card">
+            <span class="step">3</span>
+            <h3>Design and run the exchange</h3>
+            <p>Agree on the activity rhythm, student grouping, assessment connection, and shared outputs before launching the exchange with both classes.</p>
+          </article>
+        </div>
+        <p class="finder-note">
+          Ready to find a partner? Sign in and take the next step toward a class-to-class exchange.
+        </p>
+      </div>
+    </section>
+
+    <section class="section contrast" id="membership">
+      <div class="inner">
+        <div class="membership-callout">
+          <div>
+            <p class="section-kicker">Membership</p>
+            <h3>One shared membership for the GCLI learning community.</h3>
+            <p>
+              One GCLI membership connects you to OISE partner matching and the wider GCLI learning community, including OISC and related collaborative learning activities.
+            </p>
+          </div>
+          <div class="membership-actions">
+            <a class="button primary" href="#" aria-label="Learn about membership">Learn about membership</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="final" id="signin">
+      <div class="final-panel">
+        <div>
+          <p class="section-kicker">Next step</p>
+          <h2>Already a member?</h2>
+          <p>
+            Sign in when you are ready to find a partner and start shaping an OISE exchange.
+          </p>
+        </div>
+        <div class="hero-actions">
+          <a class="button primary" href="#" aria-label="Sign in to find a partner">Sign in</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>OISE is part of the GCLI ecosystem. <a href="https://gcli.site/" target="_blank" rel="noopener">About GCLI</a></span>
+      <span>Draft for local review. No authenticated routes changed.</span>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
