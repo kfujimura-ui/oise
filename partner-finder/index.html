@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="OISE helps educators find compatible international partner classrooms for Virtual Exchange and COIL.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OISE">
+<meta property="og:title" content="OISE | Online International Student Exchange">
+<meta property="og:description" content="Find compatible partner classrooms for Virtual Exchange and COIL.">
+<meta property="og:url" content="https://oise.gcli.site/partner-finder/">
+<meta property="og:image" content="https://oise.gcli.site/partner-finder/assets/oise-social-share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OISE | Online International Student Exchange">
+<meta name="twitter:description" content="Find compatible partner classrooms for Virtual Exchange and COIL.">
+<meta name="twitter:image" content="https://oise.gcli.site/partner-finder/assets/oise-social-share.png">
+<link rel="canonical" href="https://oise.gcli.site/partner-finder/">
+<title>OISE Partner Finder — GCLI</title>
+<link rel="icon" type="image/svg+xml" href="../Images/oise-favicon.svg">
+<style>
+  :root { --bg:#f4f7fb; --card:#ffffff; --line:rgba(20,35,58,.14); --navy:#0B2240; --muted:#5b6b82; --accent:#1a6fd4; --teal:#155b63; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--navy); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Hiragino Sans","Noto Sans JP",sans-serif; overflow-x:hidden; }
+  header { background:var(--card); border-bottom:1px solid var(--line); padding:20px 28px; display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
+  header h1 { flex:0 1 auto; margin:0; font-size:clamp(24px, 2.1vw, 30px); font-weight:800; line-height:1.08; letter-spacing:.02em; white-space:nowrap; }
+  header .mark { color:var(--accent); font-weight:850; }
+  header .spacer { flex:1; min-width:12px; }
+  a { color:var(--accent); }
+  .account-wrap { position:relative; }
+  .account-button { display:inline-grid; min-width:42px; height:42px; place-items:center; border:0; border-radius:50%; background:var(--teal); color:#fff; font-size:12px; font-weight:850; letter-spacing:.04em; cursor:pointer; padding:0 8px; }
+  .account-button.my { width:auto; border-radius:999px; padding:0 14px; }
+  .account-button:hover, .account-button:focus-visible { background:#0f4650; outline:none; }
+  .account-menu { position:absolute; right:0; top:50px; width:270px; padding:8px; border:1px solid var(--line); border-radius:10px; background:#fff; box-shadow:0 18px 42px rgba(11,34,64,.18); z-index:30; }
+  .account-menu[hidden] { display:none; }
+  .account-menu header { display:block; padding:10px 11px 12px; border:0; border-bottom:1px solid var(--line); background:#fff; }
+  .account-menu header strong, .account-menu header span { display:block; }
+  .account-menu header strong { color:var(--navy); font-size:14px; }
+  .account-menu header span { color:var(--muted); font-size:12px; line-height:1.35; }
+  .account-menu a, .account-menu button { display:block; width:100%; padding:9px 11px; border:0; border-radius:6px; background:transparent; color:var(--navy); font-size:13px; text-align:left; text-decoration:none; cursor:pointer; }
+  .account-menu a:hover, .account-menu button:hover { background:#eef4fc; color:var(--accent); }
+  .hero {
+    position:relative;
+    min-height:clamp(280px, 40vw, 520px);
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    isolation:isolate;
+    background:
+      linear-gradient(90deg, rgba(5,18,36,.86) 0%, rgba(8,26,51,.72) 34%, rgba(8,26,51,.22) 63%, rgba(8,26,51,.08) 100%),
+      url("./assets/oise-virtual-exchange-hero.png") center right / cover no-repeat;
+  }
+  .hero::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(5,18,36,.12), rgba(5,18,36,.34));
+    z-index:-1;
+  }
+  .hero-inner { width:100%; max-width:1040px; margin:0 auto; padding:56px 24px; }
+  .hero-copy { max-width:560px; color:#fff; text-shadow:0 2px 18px rgba(0,0,0,.42); }
+  .hero-label {
+    display:inline-flex;
+    align-items:center;
+    min-height:28px;
+    padding:5px 12px;
+    border:1px solid rgba(255,255,255,.44);
+    border-radius:999px;
+    background:rgba(255,255,255,.14);
+    color:rgba(255,255,255,.92);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    backdrop-filter:blur(6px);
+  }
+  .hero h2 { margin:14px 0 0; max-width:540px; font-size:clamp(36px, 5.2vw, 68px); line-height:.98; letter-spacing:0; }
+  .wrap { max-width:1040px; margin:0 auto; padding:24px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px; margin-bottom:16px; }
+  .muted { color:var(--muted); font-size:13px; }
+  .row { display:flex; flex-wrap:wrap; gap:10px; }
+  .row > * { flex:1 1 200px; }
+  label { display:block; font-size:12px; color:var(--muted); margin:8px 0 4px; }
+  input, textarea, select { width:100%; padding:9px 10px; border:1px solid var(--line); border-radius:2px; font:inherit; background:#fff; color:var(--navy); }
+  textarea { min-height:88px; }
+  button { background:var(--accent); color:#fff; border:0; border-radius:3px; padding:9px 16px; font:inherit; cursor:pointer; }
+  button.ghost { background:transparent; color:var(--accent); border:1px solid var(--line); }
+  button.small { padding:5px 10px; font-size:13px; }
+  .post { border:1px solid var(--line); border-radius:10px; padding:14px; margin-bottom:12px; background:#fff; }
+  .post h3 { margin:0 0 4px; font-size:16px; }
+  .tag { display:inline-block; background:#eef4fc; color:var(--accent); border-radius:999px; padding:2px 10px; font-size:12px; margin:2px 4px 2px 0; }
+  .tag.neg { background:#fff3e0; color:#a86400; }
+  .tag.closed { background:#f0f0f2; color:#6b6b76; }
+  .tag.demo { background:#f5ecff; color:#75409b; }
+  .time-help { display:block; margin-top:6px; font-size:12px; color:var(--muted); line-height:1.45; }
+  .time-help strong { color:var(--navy); }
+  .grid { display:grid; grid-template-columns:120px 1fr; gap:4px 12px; font-size:13px; margin-top:8px; }
+  .grid dt { color:var(--muted); }
+  .grid dd { margin:0; }
+  .msg { padding:10px 12px; border-radius:8px; background:#eef4fc; font-size:13px; margin:10px 0; }
+  .msg.err { background:#fdecec; color:#a11; }
+  .hide { display:none; }
+  .tabs { display:flex; gap:8px; margin-bottom:12px; }
+  .tabs button { background:transparent; color:var(--muted); border:1px solid var(--line); }
+  .tabs button.on { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .chips { display:flex; flex-wrap:wrap; gap:6px; }
+  .chips label { display:flex; align-items:center; gap:5px; margin:0; padding:6px 10px; border:1px solid var(--line);
+    border-radius:999px; font-size:13px; color:var(--navy); cursor:pointer; background:#fff; }
+  .chips input { width:auto; }
+  .contact-card { display:grid; grid-template-columns:minmax(220px,.4fr) minmax(280px,.6fr); gap:18px; align-items:start; }
+  .contact-card h2 { margin:0 0 8px; font-size:20px; }
+  .contact-status { min-height:20px; color:var(--muted); font-size:13px; }
+  @media (max-width:720px) {
+    header { display:grid; grid-template-columns:minmax(0,1fr) auto; padding:16px 18px; gap:10px 12px; }
+    header h1 { grid-column:1 / -1; font-size:clamp(25px, 7vw, 30px); line-height:1.12; white-space:normal; }
+    header .spacer { display:none; }
+    header #who { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:14px; align-self:center; }
+    .account-wrap { justify-self:end; }
+    .account-menu { position:fixed; top:112px; right:12px; left:12px; width:auto; max-height:calc(100dvh - 132px); overflow-y:auto; }
+    .hero {
+      min-height:360px;
+      align-items:flex-end;
+      background:
+        linear-gradient(180deg, rgba(5,18,36,.18) 0%, rgba(5,18,36,.68) 54%, rgba(5,18,36,.9) 100%),
+        url("./assets/oise-virtual-exchange-hero.png") 63% center / cover no-repeat;
+    }
+    .hero-inner { padding:120px 18px 34px; }
+    .hero-copy { max-width:100%; }
+    .hero h2 { font-size:clamp(34px, 11vw, 48px); max-width:12ch; }
+    .hero-label { font-size:11px; letter-spacing:.08em; }
+    .wrap { padding:18px; }
+    .tabs { overflow-x:auto; padding-bottom:2px; }
+    .tabs button { white-space:nowrap; }
+    .grid { grid-template-columns:1fr; gap:2px; }
+    .contact-card { grid-template-columns:1fr; }
+  }
+  @media (max-width:380px) {
+    header { padding:14px; }
+    header h1 { font-size:21px; }
+  }
+/* Publication design rule: rectangular surfaces use square corners. */
+.account-button.my, .account-menu, .account-menu a, .account-menu button,
+.card, input, textarea, select, button, .post, .tag, .msg, .filter-chip,
+.filter-row button, .modal, .notice, .pagination button {
+  border-radius: 0 !important;
+}
+</style>
+</head>
+<body>
+<header>
+  <h1><span class="mark">OISE</span> Partner Finder</h1>
+  <span class="spacer"></span>
+  <span id="who" class="muted"></span>
+  <div class="account-wrap">
+    <button class="account-button my" id="accountBtn" type="button" aria-expanded="false" aria-controls="accountMenu" aria-label="Open My GCLI account menu">My GCLI</button>
+    <div class="account-menu" id="accountMenu" hidden>
+      <header><strong id="accountName">My GCLI</strong><span id="accountMeta">Sign in to manage your GCLI account.</span></header>
+      <a href="https://portal.gcli.site/me/">My Profile</a>
+      <a href="https://portal.gcli.site/me/#membership">Membership &amp; Renewal</a>
+      <a href="./">OISE Workspace</a>
+      <a href="https://portal.gcli.site/cf_portal/">OISC Faculty Pages</a>
+      <a href="https://portal.gcli.site/me/#conference">Conference Registrations</a>
+      <button id="accountSignout" type="button">Sign in</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="hero-label">Virtual Exchange &amp; COIL</div>
+      <h2 id="hero-title">Connect Classrooms. Create Global Learning.</h2>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="card">
+    <strong>Language and cultural exchange partners</strong>
+    <p class="muted" style="margin:6px 0 0">Calls for Virtual Exchange and COIL classes — language practice, culture, and
+      everyday life. Sign in with a GCLI account to browse, post, or apply. Email addresses are never shown here: when you apply, we notify the poster in their
+      GCLI account and by email, and they reply through this board.</p>
+  </div>
+
+  <div class="tabs">
+    <button id="tabBrowse" class="on" data-tab="browse">Browse</button>
+    <button id="tabPost" data-tab="post">Post a call</button>
+    <button id="tabMine" data-tab="mine">My activity</button>
+  </div>
+
+  <section id="paneBrowse">
+    <div class="card">
+      <div class="row">
+        <div><label>Search (topic, institution, country)</label><input id="q" placeholder="e.g. food culture, Indonesia" /></div>
+        <div style="flex:0 0 160px"><label>Status</label>
+          <select id="statusFilter"><option value="open">Open</option><option value="all">All</option><option value="closed">Closed</option></select>
+        </div>
+      </div>
+      <div class="row" style="margin-top:6px">
+        <div>
+          <label>Days — optional</label>
+          <div id="dayPicker" class="chips">
+            <label><input type="checkbox" value="Mon" /> Mon</label>
+            <label><input type="checkbox" value="Tue" /> Tue</label>
+            <label><input type="checkbox" value="Wed" /> Wed</label>
+            <label><input type="checkbox" value="Thu" /> Thu</label>
+            <label><input type="checkbox" value="Fri" /> Fri</label>
+            <label><input type="checkbox" value="Sat" /> Sat</label>
+            <label><input type="checkbox" value="Sun" /> Sun</label>
+          </div>
+        </div>
+        <div style="flex:0 0 260px">
+          <label>Time of day — optional</label>
+          <select id="timeFilter">
+            <option value="">Any time</option>
+            <option value="6,12">Morning (6 am–12 pm)</option>
+            <option value="12,17">Afternoon (12 pm–5 pm)</option>
+            <option value="17,21">Evening (5 pm–9 pm)</option>
+            <option value="21,24">Night (9 pm–12 am)</option>
+          </select>
+        </div>
+        <div style="flex:0 0 120px; align-self:flex-end"><button id="search">Search</button></div>
+      </div>
+      <p class="muted" style="margin:8px 0 0">Both filters are optional, and the time match is deliberately loose:
+        calls one hour either side, calls with no fixed time, and calls marked negotiable all stay in the results.</p>
+    </div>
+    <div id="list"></div>
+  </section>
+
+  <section id="panePost" class="hide">
+    <div class="card">
+            <div id="postGuest" class="msg hide">Sign in with your GCLI account to post a call. <a href="https://portal.gcli.site/signin/?next=https%3A%2F%2Foise.gcli.site%2Fpartner-finder%2F">Sign in</a> · <a href="https://portal.gcli.site/account/">Set a password</a></div>
+      <form id="postForm">
+        <div class="row">
+          <div><label>Title *</label><input id="f_title" required placeholder="Everyday life and food culture: video letters and live chat" /></div>
+        </div>
+        <div class="row">
+          <div><label>Institution *</label><input id="f_institution" required /></div>
+          <div><label>Country / region</label><input id="f_country" /></div>
+          <div><label>Contact name (shown on the board)</label><input id="f_contact" /></div>
+        </div>
+        <div class="row">
+          <div><label>Topics (comma separated)</label><input id="f_topics" placeholder="daily life, food culture, festivals" /></div>
+          <div><label>Student level</label><input id="f_level" placeholder="Undergraduate" /></div>
+          <div><label>Language</label><input id="f_language" placeholder="English" /></div>
+        </div>
+        <div class="row">
+          <div><label>Recruiting from</label><input id="f_rfrom" type="date" /></div>
+          <div><label>Recruiting until</label><input id="f_rto" type="date" /></div>
+          <div><label>Exchange period from</label><input id="f_pfrom" type="date" /></div>
+          <div><label>Exchange period to</label><input id="f_pto" type="date" /></div>
+        </div>
+        <div class="row">
+          <div><label>Days</label><input id="f_days" placeholder="Tue, Thu" /></div>
+          <div><label>Times</label><input id="f_times" placeholder="3 pm–5 pm" /><div class="muted" style="margin-top:4px">Example: 3 pm–5 pm</div></div>
+          <div><label>Time zone / city</label><input id="f_timezone" list="timeZones" placeholder="Asia/Taipei" /><div class="muted" style="margin-top:4px">Choose a city when you give a time.</div></div>
+          <div><label>Group size</label><input id="f_size" placeholder="20-30 students" /></div>
+        </div>
+        <datalist id="timeZones"></datalist>
+        <label>Flexibility — tick what you can adjust for a partner</label>
+        <div class="chips">
+          <label><input id="f_dneg" type="checkbox" /> Days are negotiable</label>
+          <label><input id="f_tneg" type="checkbox" /> Times are negotiable</label>
+        </div>
+        <label>Description</label><textarea id="f_desc" placeholder="Course, goals, platform, what you are looking for in a partner."></textarea>
+        <div id="postMsg"></div>
+        <p><button type="submit">Publish call</button></p>
+      </form>
+    </div>
+  </section>
+
+  <section id="paneMine" class="hide">
+    <div class="card">
+            <div id="mineGuest" class="msg hide">Sign in to see your calls and applications. <a href="https://portal.gcli.site/signin/?next=https%3A%2F%2Foise.gcli.site%2Fpartner-finder%2F">Sign in</a></div>
+      <div id="mineBody"></div>
+    </div>
+  </section>
+
+  <section class="card contact-card" id="contact">
+    <div>
+      <h2>Contact OISE</h2>
+      <p class="muted">Send a short message about OISE partner matching, membership, or classroom exchange questions.</p>
+    </div>
+    <form id="contactForm" data-source="OISE">
+      <div class="row">
+        <div><label>Name</label><input name="name" required></div>
+        <div><label>Email</label><input name="email" type="email" required></div>
+      </div>
+      <div class="row">
+        <div><label>Affiliation</label><input name="affiliation"></div>
+        <div><label>Inquiry type</label><select name="topic"><option>OISE</option><option>Membership</option><option>Partner Matching</option><option>General Inquiry</option></select></div>
+      </div>
+      <label>Message</label>
+      <textarea name="message" required></textarea>
+      <input type="text" name="website" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px" aria-hidden="true">
+      <button type="submit">Send Message</button>
+      <div class="contact-status" id="contactStatus" aria-live="polite"></div>
+    </form>
+  </section>
+</div>
+
+<script>
+(function () {
+  var API = 'https://portal.gcli.site/api/oise';
+  var SIGNIN_URL = 'https://portal.gcli.site/signin/?next=https%3A%2F%2Foise.gcli.site%2Fpartner-finder%2F';
+  var session = null;
+  function $(id) { return document.getElementById(id); }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function initials(name) {
+    var parts = String(name || '').trim().split(/\s+/).filter(Boolean);
+    if (!parts.length) return 'My';
+    return (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] : '')).toUpperCase();
+  }
+  function updateAccountMenu() {
+    var button = $('accountBtn');
+    var name = $('accountName');
+    var meta = $('accountMeta');
+    var action = $('accountSignout');
+    if (session) {
+      button.textContent = initials(session.name);
+      button.classList.remove('my');
+      name.textContent = session.name || 'My GCLI';
+      meta.textContent = (session.owner ? 'Owner · ' : '') + 'Active GCLI Member' + (session.institution ? ' · ' + session.institution : '');
+      action.textContent = 'Sign out';
+    } else {
+      button.textContent = 'My GCLI';
+      button.classList.add('my');
+      name.textContent = 'My GCLI';
+      meta.textContent = 'Sign in to manage your GCLI account.';
+      action.textContent = 'Sign in';
+    }
+  }
+  function api(payload) {
+    return fetch(API, { method: 'POST', credentials: 'include',
+      headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload) })
+      .then(function (r) { return r.json(); });
+  }
+  function setupContactForm() {
+    var form = $('contactForm');
+    if (!form) return;
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      var status = $('contactStatus');
+      var button = form.querySelector('button[type="submit"]');
+      var data = Object.fromEntries(new FormData(form).entries());
+      data.source = form.dataset.source || 'OISE';
+      status.textContent = 'Sending...';
+      button.disabled = true;
+      fetch('https://portal.gcli.site/api/contact', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function (r) {
+        return r.json().then(function (out) { if (!r.ok || !out.ok) throw new Error(out.error || 'send-failed'); });
+      }).then(function () {
+        form.reset();
+        status.textContent = 'Message sent. Thank you.';
+      }).catch(function () {
+        status.textContent = 'Could not send the message. Please try again or email the administrator.';
+      }).finally(function () {
+        button.disabled = false;
+      });
+    });
+  }
+
+  function showTab(name) {
+    ['browse', 'post', 'mine'].forEach(function (n) {
+      $('pane' + n[0].toUpperCase() + n.slice(1)).classList.toggle('hide', n !== name);
+      $('tab' + n[0].toUpperCase() + n.slice(1)).classList.toggle('on', n === name);
+    });
+    if (name === 'mine') loadMine();
+  }
+  document.querySelectorAll('.tabs button').forEach(function (b) {
+    b.addEventListener('click', function () { showTab(b.dataset.tab); });
+  });
+
+  function loadSession() {
+    return fetch('https://portal.gcli.site/api/session', { credentials: 'include' }).then(function (r) { return r.json(); })
+      .then(function (s) {
+        session = s && s.signedIn ? s : null;
+        $('who').textContent = session ? ('Signed in as ' + session.name) : 'Not signed in';
+        updateAccountMenu();
+        $('postGuest').classList.toggle('hide', !!session);
+        $('postForm').classList.toggle('hide', !session);
+        $('mineGuest').classList.toggle('hide', !!session);
+        if (session) {
+          if (!$('f_institution').value) $('f_institution').value = session.institution || '';
+          if (!$('f_country').value) $('f_country').value = session.country || '';
+          if (!$('f_contact').value) $('f_contact').value = session.name || '';
+        }
+      }).catch(function () {});
+  }
+
+  $('accountBtn').addEventListener('click', function () {
+    var open = !$('accountMenu').hidden;
+    $('accountMenu').hidden = open;
+    $('accountBtn').setAttribute('aria-expanded', String(!open));
+  });
+  $('accountSignout').addEventListener('click', function () {
+    if (!session) {
+      window.location.href = SIGNIN_URL;
+      return;
+    }
+    fetch('https://portal.gcli.site/api/session', { method: 'POST', credentials: 'include' }).finally(function () {
+      session = null;
+      updateAccountMenu();
+      loadSession().then(loadList);
+    });
+  });
+  document.addEventListener('click', function (event) {
+    if (!event.target.closest('.account-wrap')) {
+      $('accountMenu').hidden = true;
+      $('accountBtn').setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      $('accountMenu').hidden = true;
+      $('accountBtn').setAttribute('aria-expanded', 'false');
+    }
+  });
+  updateAccountMenu();
+
+  function populateTimeZones() {
+    var fallback = ['Africa/Cairo', 'America/Chicago', 'America/Los_Angeles', 'America/New_York', 'America/Sao_Paulo',
+      'Asia/Bangkok', 'Asia/Ho_Chi_Minh', 'Asia/Jakarta', 'Asia/Manila', 'Asia/Seoul', 'Asia/Shanghai', 'Asia/Singapore',
+      'Asia/Taipei', 'Asia/Tokyo', 'Australia/Sydney', 'Europe/London', 'Europe/Paris', 'Pacific/Auckland'];
+    var zones = window.Intl && Intl.supportedValuesOf ? Intl.supportedValuesOf('timeZone') : fallback;
+    $('timeZones').innerHTML = zones.map(function (zone) { return '<option value="' + esc(zone) + '"></option>'; }).join('');
+  }
+  populateTimeZones();
+
+  function period(p) {
+    var a = [p.recruit_from, p.recruit_to].filter(Boolean).join(' → ');
+    return a || '—';
+  }
+
+  // 曜日・時間それぞれの「応相談」を掲示板上で見えるようにする
+  function flexTags(p) {
+    var legacy = p.negotiable && !p.days_negotiable && !p.times_negotiable;
+    var d = p.days_negotiable || legacy;
+    var t = p.times_negotiable || legacy;
+    var out = '';
+    if (d) out += '<span class="tag neg">days negotiable</span>';
+    if (t) out += '<span class="tag neg">times negotiable</span>';
+    if (!d && !t) out += '<span class="tag closed">days &amp; times fixed</span>';
+    return out;
+  }
+  function flexNote(v, p) {
+    var legacy = p.negotiable && !p.days_negotiable && !p.times_negotiable;
+    return (v || legacy) ? ' <span class="tag neg">negotiable</span>' : ' <span class="muted">(fixed)</span>';
+  }
+
+  function isDemoPost(p) {
+    return /^oise-sample-/.test(String(p.id || '')) || /^\s*[（(]demo[)）]/i.test(String(p.title || ''));
+  }
+  function displayTitle(p) {
+    var title = String(p.title || '').replace(/^\s*[（(]demo[)）]\s*/i, '');
+    return esc(title) + (isDemoPost(p) ? ' <span class="tag demo">(demo)</span>' : '');
+  }
+  function displayTime(value) {
+    return String(value || '').replace(/\b([01]?\d|2[0-3]):([0-5]\d)\b(?!\s*(?:a\.?m\.?|p\.?m\.?))/gi, function (_, hours, minutes) {
+      var hour = Number(hours);
+      var suffix = hour < 12 ? 'am' : 'pm';
+      var twelveHour = hour % 12 || 12;
+      return twelveHour + (minutes === '00' ? '' : ':' + minutes) + ' ' + suffix;
+    });
+  }
+
+  function sourceTimeZone(p) {
+    var country = String(p.country || '').toLowerCase();
+    var rawTimes = String(p.times || '');
+    var times = rawTimes.toLowerCase();
+    var iana = rawTimes.match(/\b([A-Za-z_]+\/[A-Za-z_]+)\b/);
+    if (iana && isTimeZone(iana[1])) return { label: timeZoneLabel(iana[1]), timeZone: iana[1] };
+    if (/\bjst\b/.test(times) || country.indexOf('japan') >= 0) return { label: 'Tokyo, Japan (UTC+9)', timeZone: 'Asia/Tokyo' };
+    if ((/\bcst\b/.test(times) && country.indexOf('taiwan') >= 0) || country.indexOf('taiwan') >= 0) return { label: 'Taipei, Taiwan (UTC+8)', timeZone: 'Asia/Taipei' };
+    if (/\bpht\b/.test(times) || country.indexOf('philippines') >= 0) return { label: 'Manila, Philippines (UTC+8)', timeZone: 'Asia/Manila' };
+    if (/\bwib\b/.test(times) || country.indexOf('indonesia') >= 0) return { label: 'Jakarta, Indonesia (UTC+7)', timeZone: 'Asia/Jakarta' };
+    var offset = times.match(/\b(?:utc|gmt)\s*([+-]\d{1,2})(?::?(\d{2}))?\b/i);
+    if (offset) {
+      var sign = offset[1].charAt(0) === '-' ? -1 : 1;
+      var hours = Number(offset[1].slice(1));
+      var minutes = Number(offset[2] || 0);
+      return { label: 'UTC' + offset[1] + (offset[2] ? ':' + offset[2] : ''), offset: sign * (hours + minutes / 60) };
+    }
+    return null;
+  }
+
+  function isTimeZone(value) {
+    try { new Intl.DateTimeFormat(undefined, { timeZone: value }); return true; } catch (_) { return false; }
+  }
+
+  function timeZoneLabel(value) {
+    var city = String(value).split('/').pop().replace(/_/g, ' ');
+    return city + ' (' + value + ')';
+  }
+
+  function displayPostedTime(p) {
+    var value = displayTime(p.times || '—');
+    var zone = sourceTimeZone(p);
+    if (!zone) return value;
+    return value.replace(/\s*\([A-Za-z_]+\/[A-Za-z_]+\)\s*$/, ' (' + zone.label + ')')
+      .replace(/\s+\b(?:jst|cst|pht|wib)\b/i, ' (' + zone.label + ')');
+  }
+
+  function parseClock(text, fallbackMeridiem) {
+    var match = String(text || '').trim().match(/^(\d{1,2})(?::(\d{2}))?\s*(a\.?m\.?|p\.?m\.?)?$/i);
+    if (!match) return null;
+    var hour = Number(match[1]);
+    var minute = Number(match[2] || 0);
+    var meridiem = (match[3] || fallbackMeridiem || '').toLowerCase().replace(/\./g, '');
+    if (minute > 59 || hour > 23) return null;
+    if (meridiem) {
+      if (hour < 1 || hour > 12) return null;
+      hour = hour % 12 + (meridiem === 'pm' ? 12 : 0);
+    }
+    return { hour: hour, minute: minute, meridiem: meridiem };
+  }
+
+  function timeZoneOffsetMinutes(timeZone, instant) {
+    var parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: timeZone, year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23'
+    }).formatToParts(instant).reduce(function (out, part) { out[part.type] = part.value; return out; }, {});
+    return (Date.UTC(Number(parts.year), Number(parts.month) - 1, Number(parts.day),
+      Number(parts.hour), Number(parts.minute), Number(parts.second)) - instant.getTime()) / 60000;
+  }
+
+  function zonedTimeToUtc(year, month, day, hour, minute, timeZone) {
+    var wallClock = Date.UTC(year, month, day, hour, minute);
+    var first = wallClock - timeZoneOffsetMinutes(timeZone, new Date(wallClock)) * 60000;
+    return wallClock - timeZoneOffsetMinutes(timeZone, new Date(first)) * 60000;
+  }
+
+  function postedTimeContext(p) {
+    var zone = sourceTimeZone(p);
+    if (!zone) return '<span class="time-help">Please ask the poster to confirm their city and UTC offset before scheduling.</span>';
+    var out = '<span class="time-help">Posted in <strong>' + esc(zone.label) + '</strong>';
+    var clocks = String(p.times || '').match(/\d{1,2}(?::\d{2})?\s*(?:a\.?m\.?|p\.?m\.?)|\d{1,2}(?::\d{2})?/gi) || [];
+    var date = String(p.period_from || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (clocks.length < 2 || !date || !window.Intl) return out + '.</span>';
+    var start = parseClock(clocks[0]);
+    var end = parseClock(clocks[1], start && start.meridiem);
+    if (!start || !end) return out + '.</span>';
+    var year = Number(date[1]), month = Number(date[2]) - 1, day = Number(date[3]);
+    var endDay = end.hour * 60 + end.minute < start.hour * 60 + start.minute ? day + 1 : day;
+    var startAt = zone.timeZone
+      ? zonedTimeToUtc(year, month, day, start.hour, start.minute, zone.timeZone)
+      : Date.UTC(year, month, day, start.hour, start.minute) - zone.offset * 3600000;
+    var endAt = zone.timeZone
+      ? zonedTimeToUtc(year, month, endDay, end.hour, end.minute, zone.timeZone)
+      : Date.UTC(year, month, endDay, end.hour, end.minute) - zone.offset * 3600000;
+    var formatter = new Intl.DateTimeFormat(undefined, { hour: 'numeric', minute: '2-digit', hour12: true, timeZoneName: 'short' });
+    var localDate = new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(startAt));
+    return out + '.<br>Your local time on the first exchange date (' + esc(localDate) + '): <strong>' + esc(formatter.format(new Date(startAt))) + '–' + esc(formatter.format(new Date(endAt))) + '</strong>.</span>';
+  }
+
+    // 絞り込み中に、その募集が条件にそのまま合うかどうか
+  var lastFilter = { days: [], hourFrom: null, hourTo: null };
+  function matchesExactly(p) {
+    if (lastFilter.days.length) {
+      var d = String(p.days || '').toLowerCase();
+      if (!lastFilter.days.some(function (x) { return d.indexOf(x.slice(0, 3).toLowerCase()) >= 0; })) return false;
+    }
+    if (lastFilter.hourFrom !== null) {
+      if (p.start_hour === null || p.end_hour === null) return false;
+      if (!(p.start_hour < lastFilter.hourTo && p.end_hour > lastFilter.hourFrom)) return false;
+    }
+    return true;
+  }
+
+  function render(posts) {
+    var filtering = lastFilter.days.length > 0 || lastFilter.hourFrom !== null;
+    var exact = filtering ? posts.filter(matchesExactly) : posts;
+    var flexible = filtering ? posts.filter(function (p) { return !matchesExactly(p); }) : [];
+    var html = exact.map(card).join('');
+    if (flexible.length) {
+      html += '<div class="card muted" style="margin-top:18px"><strong>Outside your search, but negotiable</strong><br />' +
+        'These posters marked their days or times as negotiable, so they may be able to move to suit you.</div>' +
+        flexible.map(card).join('');
+    }
+    $('list').innerHTML = html || '<div class="card muted">No calls match this search.</div>';
+    bindApply();
+  }
+
+  function card(p) {
+    {
+      var tags = String(p.topics || '').split(',').map(function (t) { return t.trim(); }).filter(Boolean)
+        .map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join('');
+      return '<div class="post">' +
+        '<h3>' + displayTitle(p) + (p.status === 'closed' ? ' <span class="tag closed">closed</span>' : '') + '</h3>' +
+        '<div class="muted">' + esc(p.institution) + (p.country ? ' · ' + esc(p.country) : '') +
+        ' · ' + esc(p.contact_name) + '</div>' +
+        '<div style="margin-top:6px">' + tags + flexTags(p) + '</div>' +
+        '<dl class="grid">' +
+        '<dt>Recruiting</dt><dd>' + esc(period(p)) + '</dd>' +
+        '<dt>Exchange</dt><dd>' + esc([p.period_from, p.period_to].filter(Boolean).join(' → ') || '—') + '</dd>' +
+        '<dt>Days</dt><dd>' + esc(p.days || '—') + flexNote(p.days_negotiable, p) + '</dd>' +
+        '<dt>Times</dt><dd>' + esc(displayPostedTime(p)) + flexNote(p.times_negotiable, p) + postedTimeContext(p) + '</dd>' +
+        '<dt>Level / language</dt><dd>' + esc([p.level, p.language].filter(Boolean).join(' · ') || '—') + '</dd>' +
+        '<dt>Group size</dt><dd>' + esc(p.group_size || '—') + '</dd>' +
+        '</dl>' +
+        (p.description ? '<p style="font-size:14px; white-space:pre-wrap">' + esc(p.description) + '</p>' : '') +
+        '<div class="muted">' + (p.applicant_count || 0) + ' application(s)</div>' +
+        '<div id="apply-' + esc(p.id) + '" style="margin-top:10px">' +
+          (p.status !== 'open' ? '' :
+            (session
+              ? '<button class="small" data-apply="' + esc(p.id) + '">Apply</button>'
+                            : '<span class="muted"><a href="https://portal.gcli.site/signin/?next=https%3A%2F%2Foise.gcli.site%2Fpartner-finder%2F">Sign in</a> to apply</span>')) +
+        '</div></div>';
+        }
+  }
+
+  function bindApply() {
+    document.querySelectorAll('[data-apply]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var id = b.dataset.apply, box = $('apply-' + id);
+        box.innerHTML = '<textarea id="m-' + id + '" placeholder="Introduce your course and what you hope to do together."></textarea>' +
+          '<p><button class="small" data-send="' + id + '">Send application</button></p>';
+        box.querySelector('[data-send]').addEventListener('click', function () {
+          api({ action: 'apply', postId: id, message: $('m-' + id).value }).then(function (r) {
+            box.innerHTML = r.ok
+              ? '<div class="msg">Application sent. The poster has been notified' + (r.notified ? ' by email' : '') + '. Your email address was not shared.</div>'
+              : '<div class="msg err">Could not send: ' + esc(r.error || 'error') + '</div>';
+          });
+        });
+      });
+    });
+  }
+
+  function loadList() {
+    if (!session) {
+      $('list').innerHTML = '<div class="card muted">Sign in with your GCLI account to use Partner Finder. <a href="' + SIGNIN_URL + '">Sign in</a></div>';
+      return;
+    }
+    var days = [].slice.call(document.querySelectorAll('#dayPicker input:checked'))
+      .map(function (c) { return c.value; });
+    var t = $('timeFilter').value ? $('timeFilter').value.split(',') : null;
+        var payload = { action: 'list', q: $('q').value, status: $('statusFilter').value };
+    lastFilter = { days: days, hourFrom: t ? Number(t[0]) : null, hourTo: t ? Number(t[1]) : null };
+    if (days.length) payload.days = days;
+    if (t) { payload.hourFrom = Number(t[0]); payload.hourTo = Number(t[1]); }
+    api(payload).then(function (r) {
+      if (!r.ok && r.error === 'sign-in-required') {
+        session = null;
+        updateAccountMenu();
+        $('list').innerHTML = '<div class="card muted">Sign in with your GCLI account to use Partner Finder. <a href="' + SIGNIN_URL + '">Sign in</a></div>';
+        return;
+      }
+      render(r.posts || []);
+    });
+  }
+  $('search').addEventListener('click', loadList);
+  $('q').addEventListener('keydown', function (e) { if (e.key === 'Enter') loadList(); });
+  $('statusFilter').addEventListener('change', loadList);
+  $('timeFilter').addEventListener('change', loadList);
+  document.querySelectorAll('#dayPicker input').forEach(function (c) {
+    c.addEventListener('change', loadList);
+  });
+
+  $('postForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var time = $('f_times').value.trim();
+    var timeZone = $('f_timezone').value.trim();
+    if ((time && !timeZone) || (!time && timeZone)) {
+      $('postMsg').innerHTML = '<div class="msg err">Add both a time and a time zone, or leave both blank if the time is negotiable.</div>';
+      return;
+    }
+    if (timeZone && !isTimeZone(timeZone)) {
+      $('postMsg').innerHTML = '<div class="msg err">Choose a time zone from the list, such as Asia/Taipei or America/New_York.</div>';
+      return;
+    }
+    api({ action: 'create', title: $('f_title').value, institution: $('f_institution').value,
+      country: $('f_country').value, contactName: $('f_contact').value, topics: $('f_topics').value,
+      level: $('f_level').value, language: $('f_language').value, recruitFrom: $('f_rfrom').value,
+      recruitTo: $('f_rto').value, periodFrom: $('f_pfrom').value, periodTo: $('f_pto').value,
+      days: $('f_days').value, times: time ? time + ' (' + timeZone + ')' : '',
+      daysNegotiable: $('f_dneg').checked, timesNegotiable: $('f_tneg').checked,
+      groupSize: $('f_size').value, description: $('f_desc').value
+    }).then(function (r) {
+      $('postMsg').innerHTML = r.ok
+        ? '<div class="msg">Published. It is now visible on the board.</div>'
+        : '<div class="msg err">Could not publish: ' + esc(r.error || 'error') + '</div>';
+      if (r.ok) { $('postForm').reset(); loadSession(); loadList(); }
+    });
+  });
+
+  function loadMine() {
+    if (!session) { $('mineBody').innerHTML = ''; return; }
+    api({ action: 'mine' }).then(function (r) {
+      if (!r.ok) { $('mineBody').innerHTML = '<div class="msg err">Could not load.</div>'; return; }
+      var h = session.owner
+        ? '<div class="msg"><strong>Owner check</strong><br>Send a test email to your own registered address. No call or application will be created. <p style="margin:8px 0 0"><button class="small ghost" id="testNotification">Send OISE test email</button></p><div id="testNotificationResult"></div></div>'
+        : '';
+      h += '<h3 style="font-size:15px">My calls</h3>';
+      h += r.posts.length ? r.posts.map(function (p) {
+        return '<div class="post"><strong>' + displayTitle(p) + '</strong> <span class="tag' +
+          (p.status === 'closed' ? ' closed' : '') + '">' + esc(p.status) + '</span>' +
+          '<div class="muted">' + p.pending + ' pending application(s)</div>' +
+          '<p><button class="small ghost" data-apps="' + esc(p.id) + '">View applications</button> ' +
+          '<button class="small ghost" data-toggle="' + esc(p.id) + '" data-status="' + esc(p.status) + '">' +
+          (p.status === 'open' ? 'Close' : 'Reopen') + '</button></p>' +
+          '<div id="apps-' + esc(p.id) + '"></div></div>';
+      }).join('') : '<p class="muted">No calls yet.</p>';
+
+            h += '<h3 style="font-size:15px">My applications</h3>';
+      var liveApps = r.applications.filter(function (a) { return a.status === 'pending' || a.status === 'accepted'; });
+      var pastApps = r.applications.filter(function (a) { return a.status !== 'pending' && a.status !== 'accepted'; });
+      h += liveApps.length ? liveApps.map(appCard).join('') : '<p class="muted">No active applications.</p>';
+      if (pastApps.length) {
+        h += '<details style="margin-top:6px"><summary class="muted" style="cursor:pointer">' +
+          'Past applications — cancelled or declined (' + pastApps.length + ')</summary>' +
+          pastApps.map(appCard).join('') + '</details>';
+      }
+      $('mineBody').innerHTML = h;
+
+      var testButton = $('testNotification');
+      if (testButton) {
+        testButton.addEventListener('click', function () {
+          testButton.disabled = true;
+          $('testNotificationResult').textContent = 'Sending...';
+          api({ action: 'test_notification' }).then(function (res) {
+            $('testNotificationResult').textContent = res.ok && res.notified
+              ? 'Test email sent. Check your inbox and Resend.'
+              : 'The test message could not be sent.';
+          }).catch(function () {
+            $('testNotificationResult').textContent = 'The test message could not be sent.';
+          }).finally(function () { testButton.disabled = false; });
+        });
+      }
+
+      function appCard(a) {
+        var live = a.status === 'pending' || a.status === 'accepted';
+        return '<div class="post"><strong>' + esc(a.title) + '</strong> <span class="tag' +
+          (live ? '' : ' closed') + '">' + esc(a.status) + '</span>' +
+          '<div class="muted">' + esc(a.institution) + (a.country ? ' · ' + esc(a.country) : '') + ' · ' + esc(a.created_at) + '</div>' +
+          (live ? '<p><button class="small ghost" data-cancel="' + esc(a.post_id) + '">Cancel this application</button></p>' : '') +
+          '<div id="cx-' + esc(a.post_id) + '"></div></div>';
+      }
+
+      // 応募の取り下げ。相手の pending から消え、取り下げ通知が届く。
+      document.querySelectorAll('[data-cancel]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          if (!window.confirm('Cancel this application? The poster will be told it has been withdrawn.')) return;
+          api({ action: 'withdraw', postId: b.dataset.cancel }).then(function (res) {
+            if (!res.ok) { $('cx-' + b.dataset.cancel).innerHTML = '<div class="msg err">Could not cancel.</div>'; return; }
+            loadMine(); loadList();
+          });
+        });
+      });
+
+      document.querySelectorAll('[data-toggle]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          api({ action: b.dataset.status === 'open' ? 'close' : 'reopen', postId: b.dataset.toggle })
+            .then(function () { loadMine(); loadList(); });
+        });
+      });
+      document.querySelectorAll('[data-apps]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var id = b.dataset.apps;
+          api({ action: 'applications', postId: id }).then(function (res) {
+            var box = $('apps-' + id);
+            if (!res.ok) { box.innerHTML = '<div class="msg err">Could not load.</div>'; return; }
+            box.innerHTML = res.applications.length ? res.applications.map(function (a) {
+              return '<div class="post" style="margin:8px 0 0"><strong>' + esc(a.name) + '</strong> ' +
+                '<span class="tag">' + esc(a.status) + '</span>' +
+                '<div class="muted">' + esc(a.institution || '') + (a.country ? ' · ' + esc(a.country) : '') + '</div>' +
+                (a.message ? '<p style="font-size:14px; white-space:pre-wrap">' + esc(a.message) + '</p>' : '') +
+                (a.status === 'pending'
+                  ? '<button class="small" data-dec="' + a.id + '" data-v="accepted">Accept</button> ' +
+                    '<button class="small ghost" data-dec="' + a.id + '" data-v="declined">Decline</button>'
+                  : '') + '</div>';
+            }).join('') : '<p class="muted">No applications yet.</p>';
+            box.querySelectorAll('[data-dec]').forEach(function (d) {
+              d.addEventListener('click', function () {
+                api({ action: 'decide', applicationId: Number(d.dataset.dec), decision: d.dataset.v })
+                  .then(function () { b.click(); loadMine(); });
+              });
+            });
+          });
+        });
+      });
+    });
+  }
+
+  setupContactForm();
+  loadSession().then(loadList);
+})();
+</script>
+</body>
+</html>
