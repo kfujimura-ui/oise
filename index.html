@@ -7,7 +7,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="OISE">
 <meta property="og:title" content="OISE | Online International Student Exchange">
-<meta property="og:description" content="Connect university classes for small-group international exchange.">
+<meta property="og:description" content="Connect two classes for international exchange.">
 <meta property="og:url" content="https://oise.gcli.site/">
 <meta property="og:image" content="https://oise.gcli.site/Images/oise-virtual-exchange-connected-classrooms.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -50,7 +50,7 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 94px;
+  min-height: 108px;
   padding: 0 5vw;
   background: rgba(255, 253, 248, .92);
   border-bottom: 1px solid rgba(220, 229, 238, .82);
@@ -67,22 +67,22 @@ a { color: inherit; text-decoration: none; }
 }
 .brand-name {
   color: var(--ink);
-  font-size: 40px;
+  font-size: 44px;
   font-weight: 900;
   letter-spacing: .08em;
   line-height: .95;
 }
 .brand-expansion {
   color: var(--muted);
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 800;
   letter-spacing: .04em;
   line-height: 1.1;
 }
 .brand-mark {
-  width: 58px;
-  height: 58px;
-  border-radius: 14px;
+  width: 70px;
+  height: 70px;
+  border-radius: 0;
   display: block;
   border: 1px solid rgba(8, 107, 106, .16);
   box-shadow: 0 8px 18px rgba(23, 34, 53, .1);
@@ -385,6 +385,38 @@ h2 {
   background: rgba(15, 143, 140, .08);
   color: #31515c;
 }
+.finder-preview {
+  margin: 0 0 28px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  box-shadow: 0 18px 42px rgba(23, 34, 53, .1);
+}
+.finder-preview-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 22px;
+  color: var(--white);
+  background: var(--ink);
+}
+.finder-preview-bar strong { font-size: 20px; }
+.finder-preview-bar span { color: rgba(255,255,255,.7); font-size: 13px; font-weight: 700; }
+.finder-preview-kicker { display: block; margin-bottom: 4px; color: #f4bd55; font-size: 11px; font-weight: 850; letter-spacing: .1em; }
+.finder-preview-body { display: grid; grid-template-columns: .86fr 1.14fr; gap: 22px; padding: 22px; }
+.finder-preview-filter { padding: 17px; border: 1px solid var(--line); background: var(--cream); }
+.finder-preview-filter label, .finder-preview-card .label { display: block; margin-bottom: 7px; color: var(--muted); font-size: 11px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+.finder-preview-input { height: 40px; margin-bottom: 12px; border: 1px solid #cbd8e2; background: var(--white); color: #8794a2; padding: 10px 11px; font-size: 13px; }
+.finder-preview-filters { display: flex; gap: 7px; flex-wrap: wrap; }
+.finder-preview-filters span { border: 1px solid #cbd8e2; background: var(--white); padding: 6px 8px; color: var(--muted); font-size: 12px; font-weight: 700; }
+.finder-preview-card { position: relative; padding: 19px 20px; border-left: 5px solid var(--sea); background: #f8fbfb; }
+.finder-preview-card h3 { margin: 0 0 8px; color: var(--ink); font-size: 19px; line-height: 1.25; }
+.finder-preview-card p { margin: 0 0 14px; color: var(--muted); font-size: 14px; }
+.finder-preview-meta { display: flex; gap: 8px; flex-wrap: wrap; }.finder-preview-meta span { color: var(--sea-dark); font-size: 12px; font-weight: 800; }
+.finder-preview-access { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 15px 22px; border-top: 1px solid var(--line); color: var(--ink); background: #f4bd55; }
+.finder-preview-access strong { display: block; margin-bottom: 3px; font-size: 13px; letter-spacing: .05em; }
+.finder-preview-access span { color: #4b3a18; font-size: 13px; }
+.finder-preview-action { flex: 0 0 auto; color: var(--ink); font-size: 14px; font-weight: 850; text-decoration: underline; text-underline-offset: 4px; }
 .final {
   padding: 88px 5vw 96px;
   background: var(--ink);
@@ -512,6 +544,7 @@ h2 {
   .text-block,
   .examples,
   .journey,
+  .finder-preview-body,
   .membership-callout,
   .contact-panel,
   .oise-intro-row,
@@ -525,6 +558,7 @@ h2 {
   }
   .visual,
   .hero-photo { min-height: 500px; }
+  .finder-preview-access { align-items: flex-start; flex-direction: column; }
 }
 @media (max-width: 560px) {
   .hero,
@@ -563,7 +597,7 @@ h2 {
 <div class="page">
   <nav class="nav" aria-label="Primary navigation">
     <a class="brand" href="#top" aria-label="OISE home">
-      <img class="brand-mark" src="Images/oise-favicon.svg" alt="" aria-hidden="true">
+      <img class="brand-mark" src="Images/oise-favicon.svg" alt="OISE logo">
       <span class="brand-text">
         <span class="brand-name">OISE</span>
         <span class="brand-expansion">Online International Student Exchange</span>
@@ -581,7 +615,7 @@ h2 {
   <main>
     <section class="hero" id="top">
       <div>
-        <h1>Connect two classes for small-group international exchange.</h1>
+        <h1>Connect two classes for international exchange.</h1>
         <p class="hero-lede">
           OISE helps educators shape practical, ongoing exchanges between university classes, where students meet in pairs or small groups and build real communication over time.
         </p>
@@ -652,6 +686,29 @@ h2 {
             Start with your course context, then connect with another educator who wants to build a practical exchange.
           </p>
         </div>
+        <a class="finder-preview" href="partner-finder/" aria-label="Open the OISE Partner Finder">
+          <div class="finder-preview-bar">
+            <div><span class="finder-preview-kicker">GCLI MEMBER TOOL</span><strong>OISE Partner Finder</strong></div>
+            <span>Member access</span>
+          </div>
+          <div class="finder-preview-body">
+            <div class="finder-preview-filter">
+              <label>Search a partner class</label>
+              <div class="finder-preview-input">Topic, institution, or country</div>
+              <div class="finder-preview-filters"><span>Calendar</span><span>Time zone</span><span>CEFR</span><span>Class size</span></div>
+            </div>
+            <div class="finder-preview-card">
+              <span class="label">Open call</span>
+              <h3>Language and cultural exchange partners</h3>
+              <p>Find a compatible class, then plan an exchange that fits both educators and students.</p>
+              <div class="finder-preview-meta"><span>Virtual Exchange</span><span>COIL</span><span>Member access required</span></div>
+            </div>
+          </div>
+          <div class="finder-preview-access">
+            <div><strong>MEMBER ACCESS REQUIRED</strong><span>Sign in to search, post, and apply.</span></div>
+            <span class="finder-preview-action">Member access →</span>
+          </div>
+        </a>
         <div class="journey">
           <article class="journey-card">
             <span class="step">1</span>
@@ -661,7 +718,7 @@ h2 {
           <article class="journey-card">
             <span class="step">2</span>
             <h3>Find a compatible partner</h3>
-            <p>Use the shared GCLI sign-in when you are ready to look for another educator and begin a conversation about fit.</p>
+            <p>Use Partner Finder to search for a compatible class, then compare calendars, time zones, CEFR range, and class size before making contact.</p>
           </article>
           <article class="journey-card">
             <span class="step">3</span>

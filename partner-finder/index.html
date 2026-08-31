@@ -380,6 +380,10 @@
     return fetch('https://portal.gcli.site/api/session', { credentials: 'include' }).then(function (r) { return r.json(); })
       .then(function (s) {
         session = s && s.signedIn ? s : null;
+        if (!session) {
+          window.location.replace(SIGNIN_URL);
+          return null;
+        }
         $('who').textContent = session ? ('Signed in as ' + session.name) : 'Not signed in';
         updateAccountMenu();
         $('postGuest').classList.toggle('hide', !!session);
@@ -390,7 +394,9 @@
           if (!$('f_country').value) $('f_country').value = session.country || '';
           if (!$('f_contact').value) $('f_contact').value = session.name || '';
         }
-      }).catch(function () {});
+      }).catch(function () {
+        window.location.replace(SIGNIN_URL);
+      });
   }
 
   $('accountBtn').addEventListener('click', function () {
@@ -406,7 +412,7 @@
     fetch('https://portal.gcli.site/api/session', { method: 'POST', credentials: 'include' }).finally(function () {
       session = null;
       updateAccountMenu();
-      loadSession().then(loadList);
+      loadSession().then(function () { if (session) loadList(); });
     });
   });
   document.addEventListener('click', function (event) {
@@ -787,7 +793,7 @@
   }
 
   setupContactForm();
-  loadSession().then(loadList);
+  loadSession().then(function () { if (session) loadList(); });
 })();
 </script>
 </body>
